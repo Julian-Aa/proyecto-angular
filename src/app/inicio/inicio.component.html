@@ -1,21 +1,16 @@
 <div class="container mt-5">
-    <h1>Bienvenido a Code-Market, la Comunidad de Tecnología</h1>
-    
-    <!-- Banner o imagen destacada -->
-    <img src="https://blog.openclassrooms.com/es/wp-content/uploads/sites/5/2017/12/blog_tools-710x418.jpg" alt="Banner de la Comunidad" class="img-fluid mb-4">
-    
     <!-- Sección de destacados -->
     <section class="mb-5">
       <h2>Comunidades Destacadas</h2>
-      <div class="row">
+      <div class="row mt-4">
         <div class="col-md-4" *ngFor="let comunidad of comunidades">
-          <div class="card">
+          <div class="card card2">
             <img [src]="comunidad.imagenUrl" class="card-img-top" alt="Imagen Comunidad 1">
-            <div class="card-body">
+            <div class="card-body ">
               <h5 class="card-title">{{ comunidad.nombre }}</h5>
               <p class="card-text">{{ comunidad.descripcion }}</p>
               <a href="#" class="btn btn-primary">Ir a la Comunidad</a>
-            </div>
+            </div>  
           </div>
         </div>
         

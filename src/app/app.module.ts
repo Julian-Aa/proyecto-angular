@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ArticulosComponent } from './articulos/articulos.component';
+import { CrearComunidadComponent } from './crear-comunidad/crear-comunidad.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ArticulosComponent } from './articulos/articulos.component';
     FooterComponent,
     InicioComponent,
     ArticulosComponent,
+    CrearComunidadComponent,
   ],
   imports: [
     BrowserModule,

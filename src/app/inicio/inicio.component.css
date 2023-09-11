@@ -1,0 +1,6 @@
+  .card2 {
+    width: 400px; /* Ancho fijo de la tarjeta */
+    height: 450px; /* Alto fijo de la tarjeta */
+    border: 1px solid #ccc; /* Borde opcional para resaltar las tarjetas */
+    margin-bottom: 20px; /* Espaciado entre las tarjetas */
+  }
