@@ -1,0 +1,18 @@
+<div class="container mt-5">
+    <h1>Artículos sobre Tecnología</h1>
+    
+    <!-- Lista de artículos -->
+    <div class="row">
+      <div class="col-md-4" *ngFor="let articulo of articulos">
+        <div class="card mb-4">
+          <img [src]="articulo.imagenUrl" class="card-img-top" alt="Imagen del Artículo">
+          <div class="card-body">
+            <h5 class="card-title">{{ articulo.titulo }}</h5>
+            <p class="card-text">{{ articulo.descripcion }}</p>
+            <a [routerLink]="['/articulo', articulo.id]" class="btn btn-primary">Leer más</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

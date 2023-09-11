@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
 export class ComunidadListComponent {
   comunidades = [
     {
-      nombre: 'Comunidad 1',
+      nombre: 'Cod¡Go',
       descripcion: 'Descripción de la Comunidad 1.',
-      imagenUrl: 'URL de la imagen 1'
+      imagenUrl: 'https://www.fpdgi.org/wp-content/uploads/2023/06/thumbnail_IMG_9386.jpg'
     },
     {
       nombre: 'Comunidad 2',

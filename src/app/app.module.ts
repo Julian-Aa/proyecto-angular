@@ -8,6 +8,8 @@ import { ComunidadListComponent } from './comunidad-list/comunidad-list.componen
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './footer/footer.component';
+import { InicioComponent } from './inicio/inicio.component';
+import { ArticulosComponent } from './articulos/articulos.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { FooterComponent } from './footer/footer.component';
     MenuComponent,
     ComunidadListComponent,
     FooterComponent,
+    InicioComponent,
+    ArticulosComponent,
   ],
   imports: [
     BrowserModule,
