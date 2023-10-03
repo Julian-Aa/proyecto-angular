@@ -13,7 +13,8 @@ const routes: Routes = [
   { path: 'contacto', component: FooterComponent },
   { path: 'articulos', component: ArticulosComponent },
   { path: 'crear', component: CrearComunidadComponent },
-  { path: 'perfil', component: PerfilComponent }
+  { path: 'perfil', component: PerfilComponent },
+  { path: '', component: InicioComponent },
 ];
 
 @NgModule({

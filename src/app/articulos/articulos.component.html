@@ -1,18 +1,25 @@
 <div class="container mt-5 main-content">
-    <h1>Artículos sobre Tecnologíaaaaa</h1>
-    
-    <!-- Lista de artículos -->
-    <div class="row mt-5">
-      <div class="col-md-4" *ngFor="let articulo of articulos">
-        <div class="card mb-4">
-          <img [src]="articulo.imagenUrl" class="card-img-top custom-image" alt="Imagen del Artículo">
-          <div class="card-body">
-            <h5 class="card-title">{{ articulo.titulo }}</h5>
-            <p class="card-text">{{ articulo.descripcion }}</p>
-            <a [routerLink]="['/articulo', articulo.id]" class="btn btn-primary">Leer más</a>
+  <h1>Artículos sobre Tecnología</h1>
+
+  <!-- Lista de artículos -->
+  <div class="row mt-5">
+    <div class="col-md-4" *ngFor="let articulo of articulos">
+      <div class="container mb-4 main-content">
+        <img
+          [src]="articulo.urlToImage"
+          class="card-img-top custom-image"
+          alt="Imagen del Artículo"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ articulo.title }}</h5>
+          <p class="card-text author">{{ articulo.author }}</p>
+          <div class="card-text description">
+            <p>{{ articulo.description }}</p>
           </div>
+          <a class="btn btn-primary" href="{{ articulo.url }}" >Leer más</a>
+          <!--<a [routerLink]="['/articulo', articulo.id]" class="btn btn-primary">Leer más</a>-->
         </div>
       </div>
     </div>
   </div>
-  
+</div>
