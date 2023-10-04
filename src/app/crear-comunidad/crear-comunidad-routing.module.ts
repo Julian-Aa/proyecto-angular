@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CrearComunidadComponent } from './crear-comunidad.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {path: '', component: CrearComunidadComponent}
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -5,3 +5,7 @@ ul li a{
 ul li{
     list-style: none;
 }
+
+.footer {
+    padding: 20px;
+}

@@ -1,20 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ComunidadListComponent } from './comunidad-list/comunidad-list.component';
-import { InicioComponent } from './inicio/inicio.component';
-import { FooterComponent } from './footer/footer.component';
 import { ArticulosComponent } from './articulos/articulos.component';
-import { CrearComunidadComponent } from './crear-comunidad/crear-comunidad.component';
-import { PerfilComponent } from './perfil/perfil/perfil.component';
+
+import { LoginComponent } from './login/login/login.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: 'comunidad', component: ComunidadListComponent },
-  { path: 'inicio', component: InicioComponent },
-  { path: 'contacto', component: FooterComponent },
-  { path: 'articulos', component: ArticulosComponent },
-  { path: 'crear', component: CrearComunidadComponent },
-  { path: 'perfil', component: PerfilComponent },
-  { path: '', component: InicioComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'dashboard', component: DashboardComponent,
+    children: [
+      { path: '', redirectTo: 'dashboard/inicio', pathMatch: 'full' },
+      { path: 'inicio', loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioModule) },
+      { path: 'comunidad', loadChildren: () => import('./comunidad-list/comunidad-list.module').then(m => m.ComunidadListModule) },
+      { path: 'articulos', loadChildren: () => import('./articulos/articulos.module').then(m => m.ArticulosModule) },
+      { path: 'crear', loadChildren: () => import('./crear-comunidad/crear-comunidad.module').then(m => m.CrearComunidadModule) },
+      { path: 'perfil', loadChildren: () => import('./perfil/perfil.module').then(m => m.PerfilModule) }
+    ]
+  },
+   { path: 'articulos', component: ArticulosComponent },
+
 ];
 
 @NgModule({
