@@ -1,10 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ArticulosComponent } from './articulos/articulos.component';
-
 import { LoginComponent } from './login/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
-
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
@@ -35,6 +33,20 @@ const routes: Routes = [
         loadChildren: () =>
           import('./crear-comunidad/crear-comunidad.module').then(
             (m) => m.CrearComunidadModule
+          ),
+      },
+      {
+        path: 'crear-usuario',
+        loadChildren: () =>
+          import('./crear-usuario/crear-usuario.module').then(
+            (m) => m.CrearUsuarioModule
+          ),
+      },
+      {
+        path: 'listar-usuarios',
+        loadChildren: () =>
+          import('./listar-usuarios/listar-usuarios.module').then(
+            (m) => m.ListarUsuariosModule
           ),
       },
       {
