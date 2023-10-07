@@ -14,9 +14,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     LoginRoutingModule,
-    ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ], exports: [
     LoginComponent
   ]
