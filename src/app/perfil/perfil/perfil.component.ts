@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { PerfilService } from './perfil.service';
 import { Usuario } from './usuario.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -18,23 +18,24 @@ export class PerfilComponent {
   };
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private perfilService: PerfilService
   ) {}
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('{id}');
-    // Verifica si idParam tiene un valor antes de intentar convertirlo a número
     if (idParam !== null) {
-      this.usuario.id = +idParam; // Convierte el valor a número
+      this.usuario.id = +idParam;
       console.log('ID del usuario:', this.usuario.id);
     } else {
       console.log('El parámetro "id" no está presente en la URL');
     }
   }
   updateProfile() {
-    this.perfilService.put(this.usuario).subscribe(
+    this.perfilService.put(this.usuario.id, this.usuario).subscribe(
       (response) => {
         console.log('Perfil actualizado exitosamente:', response);
+        this.router.navigate(['/dashboard/listar-usuarios']);
       },
       (error) => {
         console.error('Error al actualizar el perfil:', error);

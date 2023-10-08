@@ -24,7 +24,7 @@ export class ListarUsuariosComponent {
     });
   }
   editarUsuario(usuario: Usuario) {
-    this.router.navigate(['/dashboard/perfil', usuario.id]);
+    this.router.navigate(['/dashboard/perfil/'+ usuario.id]);
   }
 
   eliminarUsuario(usuario: any) {
