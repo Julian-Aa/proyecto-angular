@@ -19,6 +19,7 @@ export class LoginComponent {
     apellido: '',
     correo: '',
     contrasena: '',
+    rol:''
   };
   constructor(private http: LoginService, private router: Router) {
     this.formLogin = new FormGroup({
@@ -35,11 +36,14 @@ export class LoginComponent {
         apellido: '',
         correo: this.formLogin.value.email,
         contrasena: this.formLogin.value.password,
+        rol: 'custom'
       };
 
       this.http.post(usuario).subscribe(
         (user: any) => {
-          console.log('Usuario autenticado:', user);
+          console.log(user)
+          console.log('Usuario autenticado:');
+          sessionStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['dashboard/inicio']);
         },
         (error) => {

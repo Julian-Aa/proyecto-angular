@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ArticulosComponent } from './articulos/articulos.component';
 import { LoginComponent } from './login/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { authGuardGuard } from './auth/auth-guard.guard';
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   {
@@ -10,8 +11,8 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
-    path: 'dashboard',
-    component: DashboardComponent,
+    path: 'dashboard', component: DashboardComponent,
+    canActivate:[authGuardGuard],
     children: [
       { path: '', redirectTo: 'dashboard/inicio', pathMatch: 'full' },
       {

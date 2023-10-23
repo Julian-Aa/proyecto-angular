@@ -14,6 +14,7 @@ export class RegisterComponent {
     apellido: '',
     correo: '',
     contrasena: '',
+    rol:'',
   };
   constructor(private usuarioService: RegisterService) {}
   onRegister() {
