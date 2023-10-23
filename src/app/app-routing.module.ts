@@ -4,8 +4,11 @@ import { ArticulosComponent } from './articulos/articulos.component';
 import { LoginComponent } from './login/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
