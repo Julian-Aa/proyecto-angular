@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { PerfilService } from './perfil.service';
+import { PerfilService } from './services/perfil.service';
 import { Usuario } from './usuario.model';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
-  templateUrl: './perfil.component.html',
-  styleUrls: ['./perfil.component.css'],
+  templateUrl: './edit-user.component.html',
+  styleUrls: ['./edit-user.component.css'],
 })
-export class PerfilComponent {
+export class EditUserComnponent {
   usuario: Usuario = {
     id: 0,
     nombre: '',

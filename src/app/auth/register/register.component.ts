@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RegisterService } from './register.service';
 import { Usuario } from './usuario.model';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent {
   usuario: Usuario = {
@@ -14,20 +16,45 @@ export class RegisterComponent {
     apellido: '',
     correo: '',
     contrasena: '',
-    rol:'',
+    rol: '',
   };
-  constructor(private usuarioService: RegisterService) {}
+  constructor(
+    private usuarioService: RegisterService,
+    private router: Router
+  ) {}
   onRegister() {
+    // Verifica si los campos requeridos están vacíos
+    if (!this.usuario.nombre || !this.usuario.apellido || !this.usuario.correo || !this.usuario.contrasena) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Campos vacíos',
+        text: 'Por favor, complete todos los campos.',
+      });
+      return; // Detener el proceso de registro si hay campos vacíos
+    }
+  
     this.usuarioService.post(this.usuario).subscribe(
       (response) => {
-        console.log('usuario registrado exitosamente:', response);
+        console.log('Usuario registrado exitosamente:', response);
+        Swal.fire({
+          icon: 'success',
+          title: 'Usuario registrado',
+          text: 'El usuario se ha registrado con éxito.',
+        }).then(() => {
+          this.router.navigate(['auth/login']);
+        });
       },
       (error) => {
         console.error('Error al registrar usuario:', error);
         if (error.error === 'El correo electrónico ya existe.') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al registrar',
+            text: 'El correo electrónico ya existe.',
+          });
         }
       }
     );
     console.log('Usuario registrado:', this.usuario);
-  }
+  }  
 }

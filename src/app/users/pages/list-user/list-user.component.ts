@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Usuario } from 'src/app/crear-usuario/crear-usuario/usuario.model';
-import { ListarUsuariosService } from './listar-usuarios.service';
+import { ListarUsuariosService } from './services/listar-usuarios.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-listar-usuarios',
-  templateUrl: './listar-usuarios.component.html',
-  styleUrls: ['./listar-usuarios.component.css'],
+  selector: 'app-list-user',
+  templateUrl: './list-user.component.html',
+  styleUrls: ['./list-user.component.css'],
 })
-export class ListarUsuariosComponent {
+export class ListUserComponent {
   usuarios!: Usuario[];
   constructor(
     private router: Router,

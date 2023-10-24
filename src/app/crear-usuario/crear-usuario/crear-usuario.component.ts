@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Usuario } from './usuario.model';
 import { CrearUsuarioService } from './crear-usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-usuario',
@@ -15,11 +16,15 @@ export class CrearUsuarioComponent {
     correo: '',
     contrasena: '',
   };
-  constructor(private usuarioService: CrearUsuarioService) {}
+  constructor(
+    private usuarioService: CrearUsuarioService,
+    private router: Router
+  ) {}
   onRegister() {
     this.usuarioService.post(this.usuario).subscribe(
       (response) => {
         console.log('usuario registrado exitosamente:', response);
+        this.router.navigate(['auth/login']);
       },
       (error) => {
         console.error('Error al registrar usuario:', error);

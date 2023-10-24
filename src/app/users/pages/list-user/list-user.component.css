@@ -1,0 +1,4 @@
+.button-space::after {
+    content: '\00a0'; /* Espacio no rompible (&nbsp;) */
+    margin: 0 10px; /* Ajusta el espacio según tus preferencias */
+  }
