@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { PerfilService } from './services/perfil.service';
 import { Usuario } from './usuario.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Utils } from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-perfil',

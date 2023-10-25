@@ -44,7 +44,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/users/list-user">Lista Usuarios</a>
+          <a *ngIf="isAdmin()" class="nav-link" routerLink="/users/list-user"
+            >Lista Usuarios</a
+          >
         </li>
       </ul>
     </div>
