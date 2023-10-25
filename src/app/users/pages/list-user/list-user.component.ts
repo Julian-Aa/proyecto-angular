@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Usuario } from 'src/app/crear-usuario/crear-usuario/usuario.model';
+import { Usuario } from '../edit-user/usuario.model';
 import { ListarUsuariosService } from './services/listar-usuarios.service';
 import { Router } from '@angular/router';
 
@@ -24,7 +24,7 @@ export class ListUserComponent {
     });
   }
   editarUsuario(usuario: Usuario) {
-    this.router.navigate(['/dashboard/perfil/'+ usuario.id]);
+    this.router.navigate(['/dashboard/perfil/' + usuario.id]);
   }
 
   eliminarUsuario(usuario: any) {

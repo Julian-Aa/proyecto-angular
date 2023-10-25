@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { LoginService } from './login.service';
+import { LoginService } from './services/login.service';
 import { Usuario } from '../register/usuario.model';
 import { Router, RouterLink } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent {
     apellido: '',
     correo: '',
     contrasena: '',
-    rol:''
+    rol: '',
   };
   constructor(private http: LoginService, private router: Router) {
     this.formLogin = new FormGroup({
@@ -29,29 +30,42 @@ export class LoginComponent {
   }
 
   login() {
-    if (this.formLogin.valid) {
+    const email = this.formLogin.value.email;
+    const password = this.formLogin.value.password;
+  
+    if (email && password) {
       const usuario: Usuario = {
         id: 0,
         nombre: '',
         apellido: '',
-        correo: this.formLogin.value.email,
-        contrasena: this.formLogin.value.password,
+        correo: email,
+        contrasena: password,
         rol: 'custom'
       };
-
+  
       this.http.post(usuario).subscribe(
         (user: any) => {
-          console.log(user)
+          console.log(user);
           console.log('Usuario autenticado:');
           sessionStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['dashboard/inicio']);
         },
         (error) => {
           console.error('Error al iniciar sesión:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Inicio de sesión fallido',
+            text: 'Verifica tus credenciales e intenta nuevamente.',
+          });
         }
       );
     } else {
-      console.log('fallo');
+      Swal.fire({
+        icon: 'error',
+        title: 'Campos vacíos',
+        text: 'Por favor, completa ambos campos (correo y contraseña).',
+      });
     }
   }
+  
 }
