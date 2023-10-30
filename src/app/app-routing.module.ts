@@ -2,8 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { authGuardGuard } from './auth/auth-guard.guard';
+import { MainUserAdminComponent } from './main-user-admin/main-user-admin.component';
+import { Utils } from './utils/utils';
+import { InicioComponent } from './inicio/inicio.component';
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: 'logout', redirectTo: 'auth/login', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
@@ -23,7 +27,16 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [authGuardGuard],
     children: [
-      { path: '', redirectTo: 'dashboard/inicio', pathMatch: 'full' },
+      {
+        path: '',
+        component: MainUserAdminComponent,
+        canMatch: [() => Utils.isRole('admin')],
+      },
+      {
+        path: '',
+        component: InicioComponent,
+        canMatch: [() => Utils.isRole('custom')],
+      },
       {
         path: 'inicio',
         loadChildren: () =>

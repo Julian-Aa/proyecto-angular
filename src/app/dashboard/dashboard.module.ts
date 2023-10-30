@@ -7,14 +7,8 @@ import { MenuModule } from '../menu/menu.module';
 import { FooterModule } from '../footer/footer.module';
 
 @NgModule({
-  declarations: [
-    DashboardComponent
-  ],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule,
-    MenuModule,
-    FooterModule
-  ], exports:[DashboardComponent]
+  declarations: [DashboardComponent],
+  imports: [CommonModule, DashboardRoutingModule, MenuModule, FooterModule],
+  exports: [DashboardComponent],
 })
-export class DashboardModule { }
+export class DashboardModule {}

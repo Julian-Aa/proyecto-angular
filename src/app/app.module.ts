@@ -4,9 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { MainUserAdminComponent } from './main-user-admin/main-user-admin.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, MainUserAdminComponent],
   imports: [BrowserModule, AppRoutingModule, LoginModule, DashboardModule],
   providers: [],
   bootstrap: [AppComponent],

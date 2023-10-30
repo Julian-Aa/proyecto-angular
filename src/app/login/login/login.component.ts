@@ -39,20 +39,17 @@ export class LoginComponent {
       this.extractData()
       this.loginService.login(this.login).subscribe((res) => {
         console.log(res);
-        this.router.navigateByUrl('dashboard')
+        this.router.navigateByUrl('/dashboard')
         SwalUtils.customMessageOk('Bienvenido','login Correcto')        
       }, (error) => {
-        this.router.navigateByUrl('dashboard')
         SwalUtils.customMessageError('Ops! Hubo un error', 'login Incorrecto')        
         console.log(error);
         
       })      
     } else {
-      this.router.navigateByUrl('dashboard')
       SwalUtils.customMessageError('Ops! Hubo un error', 'login Incorrecto')        
     }
     console.log(this.loginForm);
-
   }
 
   extractData() {

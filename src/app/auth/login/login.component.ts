@@ -28,11 +28,13 @@ export class LoginComponent {
       password: new FormControl('', Validators.required),
     });
   }
-
+  ngOnInit(): void {
+    sessionStorage.clear();
+  }
   login() {
     const email = this.formLogin.value.email;
     const password = this.formLogin.value.password;
-  
+
     if (email && password) {
       const usuario: Usuario = {
         id: 0,
@@ -40,15 +42,15 @@ export class LoginComponent {
         apellido: '',
         correo: email,
         contrasena: password,
-        rol: 'custom'
+        rol: 'custom',
       };
-  
+
       this.http.post(usuario).subscribe(
         (user: any) => {
           console.log(user);
           console.log('Usuario autenticado:');
           sessionStorage.setItem('user', JSON.stringify(user));
-          this.router.navigate(['dashboard/inicio']);
+          this.router.navigateByUrl('dashboard');
         },
         (error) => {
           console.error('Error al iniciar sesión:', error);
@@ -67,5 +69,4 @@ export class LoginComponent {
       });
     }
   }
-  
 }

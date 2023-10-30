@@ -23,4 +23,8 @@ export class InicioComponent {
       imagenUrl: 'https://www.fpdgi.org/wp-content/uploads/2023/06/thumbnail_IMG_9386.jpg'
     },
   ];
+  constructor(){
+    console.log('InicioComponent');
+    
+  }
 }
