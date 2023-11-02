@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { RegisterService } from './register.service';
-import { Usuario } from './usuario.model';
+import { RegisterService } from '../../services/register.service';
+import { Usuario } from 'src/app/core/models/usuario.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 

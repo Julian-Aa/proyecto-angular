@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { LoginService } from './services/login.service';
-import { Usuario } from '../register/usuario.model';
-import { Router, RouterLink } from '@angular/router';
+import { LoginService } from '../../services/login.service';
+import { Usuario } from 'src/app/core/models/usuario.model';
+import { Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
 

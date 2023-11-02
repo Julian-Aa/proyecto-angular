@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { Contants } from '../constants/constants';
+import { Contants } from '../core/constants/constants';
 import { HttpClient } from '@angular/common/http';
 import { Login } from './login';
 

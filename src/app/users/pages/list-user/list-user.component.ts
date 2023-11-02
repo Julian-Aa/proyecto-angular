@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Usuario } from '../edit-user/usuario.model';
+import { Usuario } from 'src/app/core/models/usuario.model';
 import { ListarUsuariosService } from './services/listar-usuarios.service';
 import { Router } from '@angular/router';
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Utils } from '../utils/utils';
+import { Utils } from '../../core/utils/utils';
 
 @Component({
   selector: 'app-menu',

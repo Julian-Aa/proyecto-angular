@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { PerfilService } from './services/perfil.service';
-import { Usuario } from './usuario.model';
+import { Usuario } from 'src/app/core/models/usuario.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Utils } from 'src/app/utils/utils';
+import { Utils } from 'src/app/core/utils/utils';
 
 @Component({
   selector: 'app-perfil',
@@ -16,6 +16,7 @@ export class EditUserComnponent {
     apellido: '',
     correo: '',
     contrasena: '',
+    rol: 'custom'
   };
 
   constructor(

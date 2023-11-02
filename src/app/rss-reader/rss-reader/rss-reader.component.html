@@ -1,0 +1,7 @@
+<p>rss-reader works!</p>
+<div *ngFor="let item of rssFeedItems">
+    <h3>{{ item.title }}</h3>
+    <p>{{ item.description }}</p>
+    <a [href]="item.link">Leer más</a>
+  </div>
+  
