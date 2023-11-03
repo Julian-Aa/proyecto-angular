@@ -1,8 +1,10 @@
+import { Usuario } from './../../../core/models/usuario.model';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Articulos } from 'src/app/core/models/articulos.model';
 import { ArticleService } from '../../service/article.service';
 import Swal from 'sweetalert2';
+import { Utils } from 'src/app/core/utils/utils';
 
 @Component({
   selector: 'app-create-articles',
@@ -11,43 +13,31 @@ import Swal from 'sweetalert2';
 })
 export class CreateArticlesComponent {
   articulo: Articulos = {
-    titulo:'',
-    contenido:'',
-    autor
+    titulo: '',
+    contenido: '',
+    autor: Utils.getNombreUsuario(),
+    imagen: '',
   };
   fileToUpload: File | null = null;
   imageUrl: string = '';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private articuloService: ArticleService
-  ) {
-    this.noticiaForm = this.formBuilder.group({
-      titulo: ['', Validators.required],
-      contenido: ['', Validators.required],
-      autor: ['', Validators.required],
-    });
-  }
+  constructor(private articuloService: ArticleService) {}
 
-  createArticle() {
-    if (this.noticiaForm.valid) {
-      const nuevaNoticia: Articulos = this.noticiaForm.value;
-      this.articuloService
-        .createArticle(nuevaNoticia)
-        .subscribe((response) => {});
-      console.log('Nueva noticia:', nuevaNoticia);
+  createArticle(): void {
+    const articulo: Articulos = this.articulo;
+    if (!articulo.titulo || !articulo.autor || !articulo.contenido) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Por favor, completa todos los campos, asegúrate de seleccionar una imagen y de que price y quantity no sean negativos.',
+      });
+    } else {
+      this.articuloService.createArticle(articulo).subscribe((response) => {});
+      console.log('Nueva noticia:', articulo);
       Swal.fire(
         'Artículo creado',
         'El artículo se ha creado exitosamente',
         'success'
-      );
-
-      this.noticiaForm.reset();
-    } else {
-      Swal.fire(
-        'Error',
-        'Por favor, completa todos los campos correctamente',
-        'error'
       );
     }
   }

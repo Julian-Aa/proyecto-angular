@@ -8,7 +8,6 @@ import { ApiService } from './service/api.service';
 })
 export class ListArticleComponent {
   articulos: any []= [];
-
   constructor(private apiService: ApiService) {}
   ngOnInit(): void {
     this.llenarData();
