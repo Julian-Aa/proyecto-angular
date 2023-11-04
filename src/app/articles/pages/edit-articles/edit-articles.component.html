@@ -1,0 +1,62 @@
+<div class="container mt-5">
+    <h2>Editar Articulo</h2>
+    <form (submit)="guardarCambios()">
+      <div class="form-group col-md-6">
+        <label for="titulo">Título:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="titulo"
+          [(ngModel)]="articulo.titulo"
+          name="titulo"
+        />
+      </div>
+      <div class="form-group col-md-6">
+        <label for="contenido">Contenido:</label>
+        <textarea
+          class="form-control"
+          id="contenido"
+          [(ngModel)]="articulo.contenido"
+          name="contenido"
+        ></textarea>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="autor">Autor:</label>
+        <input disabled="true"
+          type="text"
+          class="form-control"
+          id="autor"
+          [(ngModel)]="articulo.autor"
+          name="autor"
+        />
+      </div>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">Subir Archivo</div>
+              <div class="card-body">
+                <input
+                  type="file"
+                  class="form-control"
+                  (change)="handleFileInput($event)"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-4" *ngIf="imageUrl">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">Imagen Subida</div>
+              <div class="card-body">
+                <img [src]="imageUrl" alt="Imagen subida" class="img-fluid" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary mt-5">Editar</button>
+    </form>
+  </div>
+  

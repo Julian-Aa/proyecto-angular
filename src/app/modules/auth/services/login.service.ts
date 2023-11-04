@@ -8,14 +8,8 @@ import { Usuario } from 'src/app/core/models/usuario.model';
 })
 export class LoginService {
   private apiUrl = 'http://localhost:8080/api/usuarios/login';
-  private currentUsername: string | null = null;
   constructor(private http: HttpClient) {}
-
   post(usuario: any): Observable<any> {
     return this.http.post(this.apiUrl, usuario);
   }
-  setCurrentUsername(username: string): void {
-    this.currentUsername = username;
-  }
-
 }

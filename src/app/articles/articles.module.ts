@@ -5,9 +5,18 @@ import { ArticlesRoutingModule } from './articles-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ListArticleComponent } from './pages/list-article/list-article.component';
 import { CreateArticlesComponent } from './pages/create-articles/create-articles.component';
+import { ListArticleUsersComponent } from './pages/list-article-users/list-article-users.component';
+import { TruncatePipe } from '../core/utils/truncate.pipe';
+import { EditArticlesComponent } from './pages/edit-articles/edit-articles.component';
 
 @NgModule({
-  declarations: [ListArticleComponent, CreateArticlesComponent],
+  declarations: [
+    ListArticleComponent,
+    CreateArticlesComponent,
+    ListArticleUsersComponent,
+    TruncatePipe,
+    EditArticlesComponent,
+  ],
   imports: [
     CommonModule,
     ArticlesRoutingModule,

@@ -5,6 +5,7 @@ import { authGuardGuard } from './core/guards/auth-guard.guard';
 import { MainUserAdminComponent } from './main-user-admin/main-user-admin.component';
 import { Utils } from './core/utils/utils';
 import { InicioComponent } from './inicio/inicio.component';
+import { ListArticleComponent } from './articles/pages/list-article/list-article.component';
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   { path: 'logout', redirectTo: 'auth/login', pathMatch: 'full' },
@@ -30,7 +31,7 @@ const routes: Routes = [
       },
       {
         path: '',
-        component: InicioComponent,
+        component: ListArticleComponent,
         canMatch: [() => Utils.isRole('custom')],
       },
       {

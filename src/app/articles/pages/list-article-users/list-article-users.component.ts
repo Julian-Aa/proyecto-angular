@@ -1,24 +1,25 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../../service/api.service';
+import { ArticleService } from '../../service/article.service';
 
 @Component({
-  selector: 'app-list-article',
-  templateUrl: './list-article.component.html',
-  styleUrls: ['./list-article.component.css'],
+  selector: 'app-list-article-users',
+  templateUrl: './list-article-users.component.html',
+  styleUrls: ['./list-article-users.component.css']
 })
-export class ListArticleComponent {
+export class ListArticleUsersComponent {
   articulos: any[] = [];
   currentPage = 1;
   itemsPerPage = 12;
   Array = Array;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ArticleService) {}
   ngOnInit(): void {
     this.llenarData();
   }
   llenarData() {
-    this.apiService.getData().subscribe((data) => {
-      this.articulos = data.articles;
+    this.apiService.get().subscribe((data) => {
+      this.articulos = data;
+      console.log(data);
     });
   }
   get totalPages(): number {

@@ -1,6 +1,5 @@
-import { Usuario } from './../../../core/models/usuario.model';
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { Articulos } from 'src/app/core/models/articulos.model';
 import { ArticleService } from '../../service/article.service';
 import Swal from 'sweetalert2';
@@ -11,17 +10,38 @@ import { Utils } from 'src/app/core/utils/utils';
   templateUrl: './create-articles.component.html',
   styleUrls: ['./create-articles.component.css'],
 })
-export class CreateArticlesComponent {
+export class CreateArticlesComponent implements OnInit {
   articulo: Articulos = {
+    id: 0,
     titulo: '',
     contenido: '',
     autor: Utils.getNombreUsuario(),
     imagen: '',
+    userId: Utils.getIdUsuario(),
   };
   fileToUpload: File | null = null;
   imageUrl: string = '';
+  userArticles: any[] = [];
 
-  constructor(private articuloService: ArticleService) {}
+  constructor(
+    private router: Router,
+    private articuloService: ArticleService
+  ) {}
+
+  ngOnInit(): void {
+    this.loadUserArticles();
+  }
+
+  loadUserArticles() {
+    this.articuloService.getArticlesByUser(Utils.getIdUsuario()).subscribe(
+      (response) => {
+        this.userArticles = response;
+      },
+      (error) => {
+        console.error('Error al cargar los artículos del usuario', error);
+      }
+    );
+  }
 
   createArticle(): void {
     const articulo: Articulos = this.articulo;
@@ -29,11 +49,12 @@ export class CreateArticlesComponent {
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'Por favor, completa todos los campos, asegúrate de seleccionar una imagen y de que price y quantity no sean negativos.',
+        text: 'Por favor, completa todos los campos, asegúrate de seleccionar una imagen.',
       });
     } else {
-      this.articuloService.createArticle(articulo).subscribe((response) => {});
-      console.log('Nueva noticia:', articulo);
+      this.articuloService.createArticle(articulo).subscribe((response) => {
+        this.loadUserArticles();
+      });
       Swal.fire(
         'Artículo creado',
         'El artículo se ha creado exitosamente',
@@ -59,6 +80,25 @@ export class CreateArticlesComponent {
         },
         (error) => {
           console.error('Error al subir el archivo:', error);
+        }
+      );
+    }
+  }
+  editArticle(article: Articulos) {
+    this.router.navigate(['dashboard/articles/edit-article/' + article.id]);
+  }
+
+  deleteArticle(article: Articulos) {
+    const confirmacion = confirm(
+      `¿Estás seguro de que deseas eliminar el articulo "${article.titulo}"?`
+    );
+    if (confirmacion) {
+      this.articuloService.delete(article.id).subscribe(
+        () => {
+          this.loadUserArticles();
+        },
+        (error) => {
+          console.error('Error al eliminar el articulo:', error);
         }
       );
     }
