@@ -1,7 +1,7 @@
+import { Comunidad } from './../../../../core/models/comunidad.model';
+import { AplicationService } from './../../../../service/AplicationService';
 import { Component } from '@angular/core';
-import { AplicationService } from '../service/AplicationService';
 
-import { Comunidad } from '../core/models/comunidad.model';
 @Component({
   selector: 'app-comunidad-list',
   templateUrl: './comunidad-list.component.html',
