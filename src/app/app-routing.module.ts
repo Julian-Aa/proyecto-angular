@@ -4,20 +4,13 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { authGuardGuard } from './core/guards/auth-guard.guard';
 import { MainUserAdminComponent } from './modules/admin/main-user-admin/main-user-admin.component';
 import { Utils } from './core/utils/utils';
-import { InicioComponent } from './modules/user/pages/inicio/inicio.component';
 import { ListArticleComponent } from './modules/user/pages/articles/pages/list-article/list-article.component';
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  { path: 'logout', redirectTo: 'auth/login', pathMatch: 'full' },
   {
     path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),
-  },
-  {
-    path: 'users',
-    loadChildren: () =>
-      import('./modules/user/pages/users/users.module').then((m) => m.UsersModule),
   },
   {
     path: 'dashboard',
@@ -37,26 +30,37 @@ const routes: Routes = [
       {
         path: 'articles',
         loadChildren: () =>
-          import('./modules/user/pages/articles/articles.module').then((m) => m.ArticlesModule),
+          import('./modules/user/pages/articles/articles.module').then(
+            (m) => m.ArticlesModule
+          ),
+      },
+      {
+        path: 'users',
+        loadChildren: () =>
+          import('./modules/user/pages/users/users.module').then(
+            (m) => m.UsersModule
+          ),
       },
       {
         path: 'inicio',
         loadChildren: () =>
-          import('./modules/user/pages/inicio/inicio.module').then((m) => m.InicioModule),
+          import('./modules/user/pages/inicio/inicio.module').then(
+            (m) => m.InicioModule
+          ),
       },
       {
         path: 'comunidad',
         loadChildren: () =>
-          import('./modules/user/pages/comunidad-list/comunidad-list.module').then(
-            (m) => m.ComunidadListModule
-          ),
+          import(
+            './modules/user/pages/comunidad-list/comunidad-list.module'
+          ).then((m) => m.ComunidadListModule),
       },
       {
         path: 'crear',
         loadChildren: () =>
-          import('./modules/user/pages/crear-comunidad/crear-comunidad.module').then(
-            (m) => m.CrearComunidadModule
-          ),
+          import(
+            './modules/user/pages/crear-comunidad/crear-comunidad.module'
+          ).then((m) => m.CrearComunidadModule),
       },
     ],
   },

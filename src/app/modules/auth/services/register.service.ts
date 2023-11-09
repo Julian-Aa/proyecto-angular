@@ -7,7 +7,7 @@ import { Usuario } from '../../../core/models/usuario.model';
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:8080/api/usuarios'; // ajusta esta URL según tu backend
+  private apiUrl = 'http://localhost:8080/api/usuarios';
 
   constructor(private http: HttpClient) {}
 

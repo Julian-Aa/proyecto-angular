@@ -8,6 +8,7 @@ import { ListArticleComponent } from './pages/list-article/list-article.componen
 import { CreateArticlesComponent } from './pages/create-articles/create-articles.component';
 import { ListArticleUsersComponent } from './pages/list-article-users/list-article-users.component';
 import { EditArticlesComponent } from './pages/edit-articles/edit-articles.component';
+import { ShowArticleContentComponent } from './pages/show-article-content/show-article-content.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { EditArticlesComponent } from './pages/edit-articles/edit-articles.compo
     ListArticleUsersComponent,
     TruncatePipe,
     EditArticlesComponent,
+    ShowArticleContentComponent,
   ],
   imports: [
     CommonModule,

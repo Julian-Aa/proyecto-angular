@@ -6,9 +6,18 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent, MainUserAdminComponent],
-  imports: [BrowserModule, AppRoutingModule, LoginModule, DashboardModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LoginModule,
+    DashboardModule,
+    FormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

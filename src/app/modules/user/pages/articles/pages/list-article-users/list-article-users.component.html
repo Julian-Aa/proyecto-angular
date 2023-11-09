@@ -28,7 +28,9 @@
           <div class="card-text description">
             <p>{{ articulo.contenido }}</p>
           </div>
-          <a class="btn btn-primary" href="{{ articulo.url }}">Leer más</a>
+          <a class="btn btn-primary" (click)="showArticle(articulo.id)"
+            >Leer más</a
+          >
         </div>
       </div>
     </div>

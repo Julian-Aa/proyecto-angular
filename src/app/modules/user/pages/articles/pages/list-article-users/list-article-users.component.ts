@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ArticleService } from '../../service/article.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-article-users',
   templateUrl: './list-article-users.component.html',
-  styleUrls: ['./list-article-users.component.css']
+  styleUrls: ['./list-article-users.component.css'],
 })
 export class ListArticleUsersComponent {
   articulos: any[] = [];
@@ -12,9 +13,12 @@ export class ListArticleUsersComponent {
   itemsPerPage = 12;
   Array = Array;
 
-  constructor(private apiService: ArticleService) {}
+  constructor(private apiService: ArticleService, private router: Router) {}
   ngOnInit(): void {
     this.llenarData();
+  }
+  showArticle(id: number) {
+    this.router.navigate(['dashboard/articles/show-article/' + id]);
   }
   llenarData() {
     this.apiService.get().subscribe((data) => {

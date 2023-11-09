@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Utils } from './../../../../../core/utils/utils';
 import { Component } from '@angular/core';
 
@@ -7,6 +8,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./menu.component.css'],
 })
 export class MenuComponent {
+  constructor(private route: Router) {}
+  ngOnInit(): void {}
   isAdmin() {
     const rol = Utils.getRole();
     if (rol == 'admin') {
@@ -14,6 +17,15 @@ export class MenuComponent {
     }
     return false;
   }
-  logout() {
+  editarPerfil() {
+    let id = Utils.getIdUsuario();
+    this.route.navigate(['/dashboard/users/edit-user/' + id]);
   }
+  verMisArticulos() {
+    this.route.navigate(['/dashboard/articles/create-articles']);
+  }
+  cerrarSesion() {
+    this.route.navigate(['auth/login']);
+  }
+  searchProducts() {}
 }

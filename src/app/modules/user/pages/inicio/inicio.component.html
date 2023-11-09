@@ -1,42 +1,40 @@
 <div class="container mt-5 main-content">
-    <!-- Sección de destacados -->
-    <section class="mb-5">
-      <h2>Comunidades Destacadas</h2>
-      <div class="row mt-4">
-        <div class="col-md-4" *ngFor="let comunidad of comunidades">
-          <div class="card card2">
-            <img [src]="comunidad.imagenUrl" class="card-img-top" alt="Imagen Comunidad 1">
-            <div class="card-body ">
-              <h5 class="card-title">{{ comunidad.nombre }}</h5>
-              <p class="card-text">{{ comunidad.descripcion }}</p>
-              <a href="#" class="btn btn-primary">Ir a la Comunidad</a>
-            </div>  
+  <section class="mb-5">
+    <h2>Comunidades Destacadas</h2>
+    <div class="row mt-4">
+      <div class="col-md-4" *ngFor="let comunidad of comunidades">
+        <div class="card card2">
+          <img
+            [src]="comunidad.imagenUrl"
+            class="card-img-top"
+            alt="Imagen Comunidad 1"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ comunidad.nombre }}</h5>
+            <p class="card-text">{{ comunidad.descripcion }}</p>
+            <a href="#" class="btn btn-primary">Ir a la Comunidad</a>
           </div>
         </div>
-        
-        <!-- Repite esta estructura para más comunidades destacadas -->
-        
       </div>
-    </section>
-    
-    <!-- Sección de artículos recientes -->
-    <section>
-      <h2>Artículos Recientes</h2>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="card mb-4">
-            <img src="URL_IMAGEN_ARTICULO_1" class="card-img-top" alt="Imagen del Artículo 1">
-            <div class="card-body">
-              <h5 class="card-title">Título del Artículo 1</h5>
-              <p class="card-text">Descripción breve del artículo 1.</p>
-              <a href="#" class="btn btn-primary">Leer más</a>
-            </div>
+    </div>
+  </section>
+  <section>
+    <h2>Artículos Recientes</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <img
+            src="URL_IMAGEN_ARTICULO_1"
+            class="card-img-top"
+            alt="Imagen del Artículo 1"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Título del Artículo 1</h5>
+            <p class="card-text">Descripción breve del artículo 1.</p>
+            <a href="#" class="btn btn-primary">Leer más</a>
           </div>
         </div>
-        
-        <!-- Repite esta estructura para más artículos recientes -->
-        
       </div>
-    </section>
-  </div>
-  
+    </div>
+  </section>
+</div>

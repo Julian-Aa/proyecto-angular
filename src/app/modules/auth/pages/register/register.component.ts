@@ -23,14 +23,13 @@ export class RegisterComponent {
     private router: Router
   ) {}
   onRegister() {
-    // Verifica si los campos requeridos están vacíos
     if (!this.usuario.nombre || !this.usuario.apellido || !this.usuario.correo || !this.usuario.contrasena) {
       Swal.fire({
         icon: 'error',
         title: 'Campos vacíos',
         text: 'Por favor, complete todos los campos.',
       });
-      return; // Detener el proceso de registro si hay campos vacíos
+      return;
     }
   
     this.usuarioService.post(this.usuario).subscribe(
@@ -55,6 +54,5 @@ export class RegisterComponent {
         }
       }
     );
-    console.log('Usuario registrado:', this.usuario);
   }  
 }

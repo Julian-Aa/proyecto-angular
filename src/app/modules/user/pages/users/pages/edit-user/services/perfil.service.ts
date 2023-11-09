@@ -14,7 +14,7 @@ export class PerfilService {
     return this.http.get<Usuario[]>(this.apiUrl);
   }
   getById(id: number): Observable<Usuario[]> {
-    return this.http.get<Usuario[]>(this.apiUrl + id);
+    return this.http.get<Usuario[]>('http://localhost:8080/api/usuarios/' + id);
   }
   post(usuario: Usuario): Observable<any> {
     return this.http.post(this.apiUrl, usuario);

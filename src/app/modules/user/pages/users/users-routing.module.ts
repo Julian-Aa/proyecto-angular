@@ -8,7 +8,7 @@ const routes: Routes = [
     path: '',
     children: [
       { path: 'list-user', component: ListUserComponent },
-      { path: ':{id}', component: EditUserComnponent },
+      { path: 'edit-user/:id', component: EditUserComnponent },
       { path: '**', redirectTo: 'list-user' },
     ],
   },

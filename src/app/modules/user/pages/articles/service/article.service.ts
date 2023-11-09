@@ -14,7 +14,7 @@ export class ArticleService {
     return this.http.get<Articulos[]>(this.apiUrl);
   }
   getById(id: number): Observable<Articulos[]> {
-    return this.http.get<Articulos[]>(this.apiUrl + id);
+    return this.http.get<Articulos[]>('http://localhost:8080/api/articulos/' + id);
   }
   getArticlesByUser(UserId: number): Observable<Articulos[]> {
     return this.http.get<Articulos[]>(

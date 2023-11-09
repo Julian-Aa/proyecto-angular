@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { PerfilService } from './services/perfil.service';
-import { Usuario } from 'src/app/core/models/usuario.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Utils } from 'src/app/core/utils/utils';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-perfil',
@@ -10,14 +9,7 @@ import { Utils } from 'src/app/core/utils/utils';
   styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComnponent {
-  usuario: Usuario = {
-    id: 0,
-    nombre: '',
-    apellido: '',
-    correo: '',
-    contrasena: '',
-    rol: 'custom'
-  };
+  usuario: any = {};
 
   constructor(
     private router: Router,
@@ -25,24 +17,48 @@ export class EditUserComnponent {
     private perfilService: PerfilService
   ) {}
   ngOnInit(): void {
-    const idParam = this.route.snapshot.paramMap.get('{id}');
+    const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
       this.usuario.id = +idParam;
-      console.log('ID del usuario:', this.usuario.id);
+      this.perfilService.getById(this.usuario.id).subscribe((data) => {
+        this.usuario = data;
+      });
     } else {
       console.log('El parámetro "id" no está presente en la URL');
     }
   }
   updateProfile() {
+    if (
+      !this.usuario.nombre ||
+      !this.usuario.apellido ||
+      !this.usuario.correo ||
+      !this.usuario.contrasena
+    ) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Campos vacíos',
+        text: 'Por favor, complete todos los campos.',
+      });
+      return;
+    }
+
     this.perfilService.put(this.usuario.id, this.usuario).subscribe(
       (response) => {
-        console.log('Perfil actualizado exitosamente:', response);
-        this.router.navigate(['/dashboard/listar-usuarios']);
+        Swal.fire({
+          icon: 'success',
+          title: 'Usuario editado',
+          text: 'El usuario se ha editado con éxito.',
+        }).then(() => {});
       },
       (error) => {
-        console.error('Error al actualizar el perfil:', error);
+        if (error.error === 'El correo electrónico ya existe.') {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al editar',
+            text: 'El correo electrónico ya existe.',
+          });
+        }
       }
     );
-    console.log('Perfil actualizado:', this.usuario);
   }
 }

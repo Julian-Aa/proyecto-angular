@@ -9,9 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./edit-articles.component.css'],
 })
 export class EditArticlesComponent {
-  articulo: any = {
-    
-  };
+  articulo: any = {};
   imageUrl: string = '';
   fileToUpload: File | null = null;
   constructor(
@@ -32,32 +30,38 @@ export class EditArticlesComponent {
       console.log('El parámetro "id" no está presente en la URL');
     }
   }
+
   guardarCambios() {
-    if (
-      this.articulo.titulo ||
-      this.articulo.contenido! ||
-      this.articulo.autor!
-    ) {
+    if (this.articulo.titulo == '' || this.articulo.contenido == '') {
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Por favor, completa todos los campos, asegúrate de seleccionar una imagen.',
       });
-        } else {
-      this.articleService
-        .put(this.articulo.productoId, this.articulo)
-        .subscribe(
-          (response) => {
-            console.log('Perfil actualizado exitosamente:', response);
+    } else {
+      this.articleService.put(this.articulo.id, this.articulo).subscribe(
+        (response) => {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Éxito!',
+            text: 'Articulo actualizado exitosamente.',
+          }).then(() => {
             this.router.navigate(['/dashboard/articles/create-articles']);
-          },
-          (error) => {
-            console.error('Error al actualizar el producto:', error);
-          }
-        );
+          });
+        },
+        (error) => {
+          console.error('Error al actualizar el producto:', error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al actualizar el perfil. Por favor, inténtalo de nuevo más tarde.',
+          });
+        }
+      );
       console.log('Perfil actualizado:', this.articulo);
     }
   }
+
   handleFileInput(event: any) {
     const inputElement = event.target as HTMLInputElement;
     const fileList = inputElement.files;
