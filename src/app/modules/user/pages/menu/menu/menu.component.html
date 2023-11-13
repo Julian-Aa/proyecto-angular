@@ -27,11 +27,8 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard/comunidad">Comunidades</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard/crear"
-            >Crea tu comunidad</a
+          <a class="nav-link" routerLink="/dashboard/comunidad/comunidades"
+            >Comunidades</a
           >
         </li>
         <li>
@@ -60,6 +57,11 @@
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <ng-container *ngIf="isAdmin()">
+                <a class="dropdown-item" (click)="gestionarAdministrador()"
+                  >Gestionar Administrador</a
+                >
+              </ng-container>
               <a class="dropdown-item" (click)="verMisArticulos()"
                 >Ver Mis Articulos</a
               >
@@ -71,11 +73,6 @@
               >
             </div>
           </div>
-        </li>
-        <li class="nav-item">
-          <a *ngIf="isAdmin()" class="nav-link" routerLink="/users/list-user"
-            >Lista Usuarios</a
-          >
         </li>
       </ul>
     </div>

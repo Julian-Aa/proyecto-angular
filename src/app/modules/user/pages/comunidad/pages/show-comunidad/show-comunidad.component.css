@@ -1,0 +1,36 @@
+.chat-container {
+  height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.mensaje {
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.enviado {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+.recibido {
+  background-color: #fff;
+  align-self: flex-start;
+}
+
+.input-container {
+  margin-top: 10px;
+}
+
+.usuario {
+  font-weight: bold;
+}
+.imagen-pequena {
+  max-width: 100px;
+  max-height: 100px;
+  cursor: pointer;
+}

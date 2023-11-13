@@ -12,6 +12,7 @@ export class MenuComponent {
   ngOnInit(): void {}
   isAdmin() {
     const rol = Utils.getRole();
+    console.log(rol);
     if (rol == 'admin') {
       return true;
     }
@@ -28,4 +29,7 @@ export class MenuComponent {
     this.route.navigate(['auth/login']);
   }
   searchProducts() {}
+  gestionarAdministrador() {
+    this.route.navigate(['/dashboard/admin']);
+  }
 }

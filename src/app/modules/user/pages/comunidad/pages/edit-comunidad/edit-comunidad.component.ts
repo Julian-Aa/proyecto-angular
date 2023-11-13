@@ -1,52 +1,50 @@
-import { ActivatedRoute, Router } from '@angular/router';
-import { ArticleService } from './../../service/article.service';
 import { Component } from '@angular/core';
+import { ComunidadService } from '../../services/comunidad.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Utils } from 'src/app/core/utils/utils';
 
 @Component({
-  selector: 'app-edit-articles',
-  templateUrl: './edit-articles.component.html',
-  styleUrls: ['./edit-articles.component.css'],
+  selector: 'app-edit-comunidad',
+  templateUrl: './edit-comunidad.component.html',
+  styleUrls: ['./edit-comunidad.component.css'],
 })
-export class EditArticlesComponent {
-  articulo: any = {};
+export class EditComunidadComponent {
+  comunidad: any = {};
   imageUrl: string = '';
+  nombreAutor: string = Utils.getNombreUsuario();
   fileToUpload: File | null = null;
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private articleService: ArticleService
+    private comunidadService: ComunidadService
   ) {}
   ngOnInit(): void {
     const idParam = this.route.snapshot.paramMap.get('id');
     if (idParam !== null) {
-      this.articulo.productoId = +idParam;
-      this.articleService
-        .getById(this.articulo.productoId)
-        .subscribe((data) => {
-          this.articulo = data;
-        });
+      this.comunidad.id = +idParam;
+      this.comunidadService.getById(this.comunidad.id).subscribe((data) => {
+        this.comunidad = data;
+      });
     } else {
       console.log('El parámetro "id" no está presente en la URL');
     }
   }
-
   guardarCambios() {
-    if (this.articulo.titulo == '' || this.articulo.contenido == '') {
+    if (this.comunidad.nombre == '' || this.comunidad.descripcion == '') {
       Swal.fire({
         icon: 'error',
         title: 'Error',
         text: 'Por favor, completa todos los campos, asegúrate de seleccionar una imagen.',
       });
     } else {
-      this.articleService.put(this.articulo.id, this.articulo).subscribe(
+      this.comunidadService.put(this.comunidad.id, this.comunidad).subscribe(
         (response) => {
           Swal.fire({
             icon: 'success',
             title: '¡Éxito!',
-            text: 'Articulo actualizado exitosamente.',
-          }).then(() => {
-          });
+            text: 'Comunidad actualizada exitosamente.',
+          }).then(() => {});
         },
         (error) => {
           console.error('Error al actualizar el producto:', error);
@@ -57,10 +55,9 @@ export class EditArticlesComponent {
           });
         }
       );
-      console.log('Perfil actualizado:', this.articulo);
+      console.log('Perfil actualizado:', this.comunidad);
     }
   }
-
   handleFileInput(event: any) {
     const inputElement = event.target as HTMLInputElement;
     const fileList = inputElement.files;
@@ -73,7 +70,7 @@ export class EditArticlesComponent {
 
   uploadFile() {
     if (this.fileToUpload) {
-      this.articleService.addImagen(this.fileToUpload).subscribe(
+      this.comunidadService.addImagen(this.fileToUpload).subscribe(
         (imageUrl) => {
           this.imageUrl = imageUrl;
         },

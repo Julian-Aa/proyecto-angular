@@ -1,0 +1,25 @@
+<div class="container mt-4 main-content">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Chat De La Comunidad {{comunidadd.nombre}}</h1>
+  </div>
+</div>
+
+<div class="container chat-container">
+  <div *ngFor="let mensaje of mensajes">
+    <span class="usuario">{{ mensaje.usuario.nombre }}: </span>
+    <span class="contenido">{{ mensaje.contenido }}</span>
+  </div>
+</div>
+
+<div class="container input-container">
+  <div class="input-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="nuevMensaje.contenido"
+      (keyup.enter)="enviarMensaje()"
+      placeholder="Escribe un mensaje..."
+    />
+    <button class="btn btn-primary" (click)="enviarMensaje()">Enviar</button>
+  </div>
+</div>

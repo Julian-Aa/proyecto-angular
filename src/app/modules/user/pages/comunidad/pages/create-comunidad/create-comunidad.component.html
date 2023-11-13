@@ -1,32 +1,33 @@
 <div class="container mt-5">
-  <h2>Crear Articulo</h2>
-  <form (submit)="createArticle()">
+  <h2>Crear Comunidad</h2>
+  <form (submit)="createComunidad()">
     <div class="form-group col-md-6">
-      <label for="titulo">Título:</label>
+      <label for="titulo">Nombre:</label>
       <input
         type="text"
         class="form-control"
         id="titulo"
-        [(ngModel)]="articulo.titulo"
+        [(ngModel)]="comunidad.nombre"
         name="titulo"
       />
     </div>
     <div class="form-group col-md-6">
-      <label for="contenido">Contenido:</label>
+      <label for="contenido">Descripcion:</label>
       <textarea
         class="form-control"
         id="contenido"
-        [(ngModel)]="articulo.contenido"
+        [(ngModel)]="comunidad.descripcion"
         name="contenido"
       ></textarea>
     </div>
     <div class="form-group col-md-6">
-      <label for="autor">Autor:</label>
-      <input disabled="true"
+      <label for="autor">Creador:</label>
+      <input
+        disabled="true"
         type="text"
         class="form-control"
         id="autor"
-        [(ngModel)]="articulo.autor"
+        [(ngModel)]="nombreAutor"
         name="autor"
       />
     </div>
@@ -34,7 +35,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="card">
-            <div class="card-header">Subir Archivo</div>
+            <div class="card-header">Subir Imagen</div>
             <div class="card-body">
               <input
                 type="file"
@@ -61,21 +62,21 @@
   <table class="table mt-5">
     <thead>
       <tr>
-        <th>Título</th>
-        <th>Contenido</th>
+        <th>Nombre</th>
+        <th>Descripcion</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let article of userArticles">
-        <td>{{ article.titulo }}</td>
-        <td>{{ article.contenido | truncate: 150 }}</td>
+      <tr *ngFor="let comunidad of userComunidades">
+        <td>{{ comunidad.nombre }}</td>
+        <td>{{ comunidad.descripcion }}</td>
         <td>
           <div class="button-container">
-            <button class="btn btn-primary" (click)="editArticle(article)">
+            <button class="btn btn-primary" (click)="editComunidad(comunidad)">
               Editar
             </button>
-            <button class="btn btn-danger" (click)="deleteArticle(article)">
+            <button class="btn btn-danger" (click)="deleteComunidad(comunidad)">
               Eliminar
             </button>
           </div>

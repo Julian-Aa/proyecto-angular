@@ -1,0 +1,30 @@
+<div class="container mt-4 main-content">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1>Comunidades de nuestros usuarios</h1>
+    <div class="button-container">
+      <a
+        routerLink="/dashboard/comunidad/create-comunidad"
+        class="btn btn-primary"
+        >Crear Comunidad</a
+      >
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let comunidad of comunidades">
+      <div class="card">
+        <img
+          [src]="comunidad.imagenUrl"
+          class="card-img-top"
+          alt="Imagen de la Comunidad"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ comunidad.nombre }}</h5>
+          <p class="card-text">{{ comunidad.descripcion }}</p>
+          <a (click)="routerr(comunidad.id)" class="btn btn-primary"
+            >Ingresa a esta comunidad</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

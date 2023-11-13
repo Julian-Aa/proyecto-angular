@@ -1,3 +1,4 @@
+import { Usuario } from '../models/usuario.model';
 
 export class Utils {
   static getRole(): string {
@@ -11,6 +12,10 @@ export class Utils {
   static getNombreUsuario(): string {
     const usuario = JSON.parse(sessionStorage.getItem('user')!);
     return usuario.nombre + ' ' + usuario.apellido;
+  }
+  static getUsuario(): Usuario {
+    const usuario = JSON.parse(sessionStorage.getItem('user')!);
+    return usuario;
   }
   static getIdUsuario(): number {
     const usuario = JSON.parse(sessionStorage.getItem('user')!);

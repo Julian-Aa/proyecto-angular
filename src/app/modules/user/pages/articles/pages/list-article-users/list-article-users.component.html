@@ -26,7 +26,7 @@
           <h5 class="card-title">{{ articulo.titulo }}</h5>
           <p class="card-text author">{{ articulo.autor }}</p>
           <div class="card-text description">
-            <p>{{ articulo.contenido }}</p>
+            <p>{{ articulo.contenido | truncate : 150 }}</p>
           </div>
           <a class="btn btn-primary" (click)="showArticle(articulo.id)"
             >Leer más</a

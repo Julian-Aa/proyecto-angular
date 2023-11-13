@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Usuario } from 'src/app/core/models/usuario.model';
-import { ListarUsuariosService } from './services/listar-usuarios.service';
+import { ListarUsuariosService } from '../services/listar-usuarios.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-user',
@@ -28,19 +29,28 @@ export class ListUserComponent {
   }
 
   eliminarUsuario(usuario: any) {
-    const confirmacion = confirm(
-      `¿Estás seguro de que deseas eliminar el producto "${usuario.nombre}"?`
-    );
-    if (confirmacion) {
-      this.usuariosService.delete(usuario.id).subscribe(
-        () => {
-          this.actualizarListaUsuarios();
-        },
-        (error) => {
-          console.log(usuario.id);
-          console.error('Error al eliminar el producto:', error);
-        }
-      );
-    }
+    Swal.fire({
+      title: `¿Estás seguro de que deseas eliminar al usuario "${usuario.nombre}"?`,
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.usuariosService.delete(usuario.id).subscribe(
+          () => {
+            this.actualizarListaUsuarios();
+            Swal.fire('Eliminado', 'El usuario ha sido eliminado correctamente.', 'success');
+          },
+          (error) => {
+            console.error('Error al eliminar el usuario:', error);
+            Swal.fire('Error', 'Hubo un error al intentar eliminar el usuario.', 'error');
+          }
+        );
+      }
+    });
   }
 }

@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { authGuardGuard } from './core/guards/auth-guard.guard';
-import { MainUserAdminComponent } from './modules/admin/main-user-admin/main-user-admin.component';
 import { Utils } from './core/utils/utils';
 import { ListArticleComponent } from './modules/user/pages/articles/pages/list-article/list-article.component';
+import { AdminComponent } from './modules/user/pages/users/pages/admin/admin.component';
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   {
@@ -19,9 +19,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: MainUserAdminComponent,
+        component: ListArticleComponent,
         canMatch: [() => Utils.isRole('admin')],
       },
+      { path: 'admin', component: AdminComponent },
       {
         path: '',
         component: ListArticleComponent,
@@ -51,16 +52,9 @@ const routes: Routes = [
       {
         path: 'comunidad',
         loadChildren: () =>
-          import(
-            './modules/user/pages/comunidad-list/comunidad-list.module'
-          ).then((m) => m.ComunidadListModule),
-      },
-      {
-        path: 'crear',
-        loadChildren: () =>
-          import(
-            './modules/user/pages/crear-comunidad/crear-comunidad.module'
-          ).then((m) => m.CrearComunidadModule),
+          import('./modules/user/pages/comunidad/comunidad.module').then(
+            (m) => m.ComunidadModule
+          ),
       },
     ],
   },

@@ -89,18 +89,34 @@ export class CreateArticlesComponent implements OnInit {
   }
 
   deleteArticle(article: Articulos) {
-    const confirmacion = confirm(
-      `¿Estás seguro de que deseas eliminar el articulo "${article.titulo}"?`
-    );
-    if (confirmacion) {
-      this.articuloService.delete(article.id).subscribe(
-        () => {
-          this.loadUserArticles();
-        },
-        (error) => {
-          console.error('Error al eliminar el articulo:', error);
-        }
-      );
-    }
+    Swal.fire({
+      title: `¿Estás seguro de que deseas eliminar el artículo "${article.titulo}"?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, eliminar',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.articuloService.delete(article.id).subscribe(
+          () => {
+            Swal.fire({
+              icon: 'success',
+              title: 'Éxito',
+              text: 'Artículo eliminado exitosamente',
+            });
+            this.loadUserArticles();
+          },
+          (error) => {
+            console.error('Error al eliminar el artículo:', error);
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Hubo un error al eliminar el artículo. Por favor, inténtalo de nuevo más tarde.',
+            });
+          }
+        );
+      }
+    });
   }
 }
