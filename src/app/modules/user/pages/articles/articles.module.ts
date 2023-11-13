@@ -1,4 +1,3 @@
-import { TruncatePipe } from './../../../../core/utils/truncate.pipe';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -9,13 +8,13 @@ import { CreateArticlesComponent } from './pages/create-articles/create-articles
 import { ListArticleUsersComponent } from './pages/list-article-users/list-article-users.component';
 import { EditArticlesComponent } from './pages/edit-articles/edit-articles.component';
 import { ShowArticleContentComponent } from './pages/show-article-content/show-article-content.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
     ListArticleComponent,
     CreateArticlesComponent,
     ListArticleUsersComponent,
-    TruncatePipe,
     EditArticlesComponent,
     ShowArticleContentComponent,
   ],
@@ -24,6 +23,7 @@ import { ShowArticleContentComponent } from './pages/show-article-content/show-a
     ArticlesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
 })
 export class ArticlesModule {}

@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { SharedRoutingModule } from './shared-routing.module';
+import { TruncatePipe } from '../core/utils/truncate.pipe';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [TruncatePipe],
+  exports:[TruncatePipe],
   imports: [
     CommonModule,
-    SharedRoutingModule
+    SharedRoutingModule,
   ]
 })
 export class SharedModule { }

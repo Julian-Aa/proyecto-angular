@@ -6,15 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { EditUserComnponent } from './pages/edit-user/edit-user.component';
 import { ListUserComponent } from './pages/list-user/list-user.component';
 import { AdminComponent } from './pages/admin/admin.component';
-import { TruncatePipe } from 'src/app/core/utils/truncate.pipe';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    EditUserComnponent,
-    ListUserComponent,
-    AdminComponent,
-    TruncatePipe,
-  ],
-  imports: [CommonModule, UsersRoutingModule, FormsModule],
+  declarations: [EditUserComnponent, ListUserComponent, AdminComponent],
+  imports: [CommonModule, UsersRoutingModule, FormsModule, SharedModule],
 })
 export class UsersModule {}
