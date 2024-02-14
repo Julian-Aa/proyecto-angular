@@ -7,7 +7,7 @@ import { Usuario } from '../../../core/models/usuario.model';
   providedIn: 'root',
 })
 export class RegisterService {
-  private apiUrl = 'http://localhost:8080/api/usuarios';
+  private apiUrl = 'http://localhost:8080/usuarios';
 
   constructor(private http: HttpClient) {}
 

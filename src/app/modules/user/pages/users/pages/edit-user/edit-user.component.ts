@@ -27,10 +27,16 @@ export class EditUserComnponent {
       console.log('El parámetro "id" no está presente en la URL');
     }
   }
+  isAdmin(): boolean {
+    return this.usuario.rol === 'admin';
+  }
+
+  isVendor(): boolean {
+    return this.usuario.rol === 'vendedor';
+  }
   updateProfile() {
     if (
       !this.usuario.nombre ||
-      !this.usuario.apellido ||
       !this.usuario.correo ||
       !this.usuario.contrasena
     ) {

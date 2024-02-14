@@ -5,7 +5,6 @@
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Apellido</th>
         <th class="text-center">Email</th>
         <th>Acciones</th>
       </tr>
@@ -13,7 +12,6 @@
     <tbody>
       <tr *ngFor="let usuario of usuarios">
         <td>{{ usuario.nombre }}</td>
-        <td>{{ usuario.apellido }}</td>
         <td>{{ usuario.correo }}</td>
         <td>
           <button (click)="editarUsuario(usuario)" class="btn btn-primary">

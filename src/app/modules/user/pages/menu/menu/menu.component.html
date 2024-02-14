@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="m-4 contenedor">
-    <a class="navbar-brand" routerLink="/dashboard/articles/list-articles"
-      >NoticiasTec</a
+  <div class="container">
+    <a class="navbar-brand" routerLink="/dashboard/inicio"
+      >equitel</a
     >
     <button
       class="navbar-toggler"
@@ -14,24 +14,15 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" routerLink="/dashboard/articles/list-news"
-            >Noticias</a
+            >ventas</a
           >
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard/articles/articles-users"
-            >Articulos</a
-          >
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard/comunidad/comunidades"
-            >Comunidades</a
-          >
-        </li>
-        <li>
+        <li class="nav-item dropdown">
           <div class="dropdown">
             <a
               class="nav-link dropdown-toggle"
@@ -55,15 +46,14 @@
                 />
               </svg>
             </a>
-
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <ng-container *ngIf="isAdmin()">
                 <a class="dropdown-item" (click)="gestionarAdministrador()"
                   >Gestionar Administrador</a
                 >
               </ng-container>
-              <a class="dropdown-item" (click)="verMisArticulos()"
-                >Ver Mis Articulos</a
+              <a class="dropdown-item" (click)="verInventario()"
+                >Ver Inventario</a
               >
               <a class="dropdown-item" (click)="editarPerfil()"
                 >Editar Perfil</a

@@ -1,8 +1,7 @@
-export class Usuario {
-  id!: number;
-  nombre!: string;
-  apellido!: string;
-  correo!: string;
-  contrasena!: string;
-  rol!:string;
+export interface Usuario {
+  id: number;
+  nombre: string;
+  correo: string;
+  contrasena: string;
+  rol:string;
 }

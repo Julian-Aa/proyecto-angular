@@ -1,0 +1,72 @@
+<div class="container mt-5">
+  <h2 class="text-center">Crear Producto</h2>
+  <button
+    *ngIf="esAdmin()"
+    type="button"
+    class="btn btn-secondary mb-3"
+    [routerLink]="['/dashboard/admin']"
+  >
+    Regresar
+  </button>
+  <br />
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form (ngSubmit)="crearProducto()">
+        <div class="mb-3">
+          <label for="descripcion" class="form-label">Descripción:</label>
+          <input
+            type="text"
+            [(ngModel)]="producto.descripcion"
+            name="descripcion"
+            class="form-control"
+            id="descripcion"
+            placeholder="Descripción"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="modelo" class="form-label">Modelo:</label>
+          <input
+            type="text"
+            [(ngModel)]="producto.modelo"
+            name="modelo"
+            class="form-control"
+            id="modelo"
+            placeholder="Modelo"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="cantidadEnBodega" class="form-label"
+            >Cantidad en Bodega:</label
+          >
+          <input
+            type="number"
+            [(ngModel)]="producto.cantidadEnBodega"
+            name="cantidadEnBodega"
+            class="form-control"
+            id="cantidadEnBodega"
+            placeholder="Cantidad en Bodega"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="valorVenta" class="form-label">Valor de Venta:</label>
+          <input
+            type="number"
+            step="0.01"
+            [(ngModel)]="producto.valorVenta"
+            name="valorVenta"
+            class="form-control"
+            id="valorVenta"
+            placeholder="Valor de Venta"
+            required
+          />
+        </div>
+        <div class="mb-3 text-center">
+          <button type="submit" class="btn btn-primary">Crear Producto</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

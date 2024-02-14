@@ -8,7 +8,7 @@ import { Usuario } from 'src/app/core/models/usuario.model';
 })
 export class ListarUsuariosService {
 
-  private apiUrl = 'http://localhost:8080/api/usuarios';
+  private apiUrl = 'http://localhost:8080/usuarios';
 
   constructor(private http: HttpClient) {}
 
@@ -19,14 +19,14 @@ export class ListarUsuariosService {
     return this.http.get<Usuario[]>(this.apiUrl + id);
   }
   post(usuario: Usuario): Observable<any> {
-    return this.http.post(this.apiUrl, Usuario);
+    return this.http.post(this.apiUrl, usuario);
   }
 
   update(id: number, producto: any) {
-    return this.http.put('http://localhost:8080/api/usuarios/' + id, producto);
+    return this.http.put('http://localhost:8080/usuarios/' + id, producto);
   }
 
   delete(id: number) {
-    return this.http.delete('http://localhost:8080/api/usuarios/' + id);
+    return this.http.delete('http://localhost:8080/usuarios/' + id);
   }
 }

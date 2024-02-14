@@ -3,6 +3,7 @@ import { RegisterService } from '../../services/register.service';
 import { Usuario } from 'src/app/core/models/usuario.model';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Utils } from 'src/app/core/utils/utils';
 
 @Component({
   selector: 'app-register',
@@ -13,17 +14,29 @@ export class RegisterComponent {
   usuario: Usuario = {
     id: 0,
     nombre: '',
-    apellido: '',
     correo: '',
     contrasena: '',
-    rol: '',
+    rol: 'vendedor',
   };
   constructor(
     private usuarioService: RegisterService,
     private router: Router
   ) {}
+  esAdmin() {
+    const rol = Utils.getRole();
+    console.log(rol);
+    if (rol == 'admin') {
+      return true;
+    }
+    return false;
+  }
   onRegister() {
-    if (!this.usuario.nombre || !this.usuario.apellido || !this.usuario.correo || !this.usuario.contrasena) {
+    if (
+      !this.usuario.nombre ||
+      !this.usuario.correo ||
+      !this.usuario.contrasena ||
+      !this.usuario.rol
+    ) {
       Swal.fire({
         icon: 'error',
         title: 'Campos vacíos',
@@ -31,7 +44,7 @@ export class RegisterComponent {
       });
       return;
     }
-  
+
     this.usuarioService.post(this.usuario).subscribe(
       (response) => {
         console.log('Usuario registrado exitosamente:', response);
@@ -40,7 +53,11 @@ export class RegisterComponent {
           title: 'Usuario registrado',
           text: 'El usuario se ha registrado con éxito.',
         }).then(() => {
-          this.router.navigate(['auth/login']);
+          if (this.esAdmin()) {
+            this.router.navigate(['/dashboard/admin']);
+          } else {
+            this.router.navigate(['auth/login']);
+          }
         });
       },
       (error) => {
@@ -54,5 +71,5 @@ export class RegisterComponent {
         }
       }
     );
-  }  
+  }
 }

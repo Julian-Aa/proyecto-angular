@@ -12,7 +12,6 @@ export class MenuComponent {
   ngOnInit(): void {}
   isAdmin() {
     const rol = Utils.getRole();
-    console.log(rol);
     if (rol == 'admin') {
       return true;
     }
@@ -22,14 +21,13 @@ export class MenuComponent {
     let id = Utils.getIdUsuario();
     this.route.navigate(['/dashboard/users/edit-user/' + id]);
   }
-  verMisArticulos() {
-    this.route.navigate(['/dashboard/articles/create-articles']);
+  verInventario() {
+    this.route.navigate(['/dashboard/users/inventario']);
   }
   cerrarSesion() {
     this.route.navigate(['auth/login']);
   }
-  searchProducts() {}
   gestionarAdministrador() {
-    this.route.navigate(['/dashboard/admin']);
+    this.route.navigate(['/dashboard/admin/']);
   }
 }

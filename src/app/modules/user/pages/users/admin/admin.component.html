@@ -1,0 +1,116 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 sidebar">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a class="nav-link" (click)="mostrarContenido('usuarios')"
+            >Gestionar usuarios</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="mostrarContenido('productos')"
+            >Gestionar productos</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="mostrarContenido('ventas')"
+            >Gestionar Ventas</a
+          >
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="mostrarContenido('registro')"
+            >Registro Auditoria</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-9 contenido">
+      <div *ngIf="opcionSeleccionada === 'productos'">
+        <h2>Gestionar Productos</h2>
+        <div class="button-container">
+          <a
+            routerLink="/dashboard/producto/create-product"
+            class="btn btn-secondary mb-3"
+            >Crear Producto</a
+          >
+        </div>
+
+        <table class="table mt-5">
+          <thead>
+            <tr>
+              <th>Modelo</th>
+              <th>Descripcion</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of productos">
+              <td>{{ producto.modelo }}</td>
+              <td>{{ producto.descripcion }}</td>
+              <td>
+                <div class="button-container">
+                  <button
+                    class="btn btn-primary"
+                    (click)="editarProducto(producto)"
+                  >
+                    Editar
+                  </button>
+                  <button
+                    class="btn btn-danger"
+                    (click)="deleteProducto(producto)"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="opcionSeleccionada === 'usuarios'">
+        <h2>Gestionar Usuarios</h2>
+
+        <div class="button-container">
+          <a routerLink="/auth/register" class="btn btn-secondary mb-3"
+            >Crear Usuario</a
+          >
+        </div>
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th class="text-center">Email</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let usuario of usuarios">
+              <td>{{ usuario.nombre }}</td>
+              <td>{{ usuario.correo }}</td>
+              <td>
+                <div class="button-container">
+                  <button
+                    (click)="editarUsuario(usuario)"
+                    class="btn btn-primary"
+                  >
+                    Editar
+                  </button>
+                  <span class="button-space"></span>
+                  <button
+                    (click)="eliminarUsuario(usuario)"
+                    class="btn btn-danger"
+                  >
+                    Eliminar
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

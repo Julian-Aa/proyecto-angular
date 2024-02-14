@@ -17,7 +17,6 @@ export class LoginComponent {
   usuario: Usuario = {
     id: 0,
     nombre: '',
-    apellido: '',
     correo: '',
     contrasena: '',
     rol: '',
@@ -39,7 +38,6 @@ export class LoginComponent {
       const usuario: Usuario = {
         id: 0,
         nombre: '',
-        apellido: '',
         correo: email,
         contrasena: password,
         rol: 'custom',

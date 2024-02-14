@@ -3,8 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { authGuardGuard } from './core/guards/auth-guard.guard';
 import { Utils } from './core/utils/utils';
-import { ListArticleComponent } from './modules/user/pages/articles/pages/list-article/list-article.component';
-import { AdminComponent } from './modules/user/pages/users/pages/admin/admin.component';
+import { InicioComponent } from './modules/user/pages/inicio/inicio.component';
+import { ListUserComponent } from './modules/user/pages/users/pages/list-user/list-user.component';
+import { AdminComponent } from './modules/user/pages/users/admin/admin.component';
 const routes: Routes = [
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   {
@@ -19,22 +20,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ListArticleComponent,
+        component: InicioComponent,
         canMatch: [() => Utils.isRole('admin')],
       },
       { path: 'admin', component: AdminComponent },
-      {
-        path: '',
-        component: ListArticleComponent,
-        canMatch: [() => Utils.isRole('custom')],
-      },
-      {
-        path: 'articles',
-        loadChildren: () =>
-          import('./modules/user/pages/articles/articles.module').then(
-            (m) => m.ArticlesModule
-          ),
-      },
       {
         path: 'users',
         loadChildren: () =>
@@ -50,10 +39,10 @@ const routes: Routes = [
           ),
       },
       {
-        path: 'comunidad',
+        path: 'producto',
         loadChildren: () =>
-          import('./modules/user/pages/comunidad/comunidad.module').then(
-            (m) => m.ComunidadModule
+          import('./modules/user/pages/productos/productos.module').then(
+            (m) => m.ProductosModule
           ),
       },
     ],

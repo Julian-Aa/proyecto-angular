@@ -11,7 +11,7 @@ export class Utils {
   }
   static getNombreUsuario(): string {
     const usuario = JSON.parse(sessionStorage.getItem('user')!);
-    return usuario.nombre + ' ' + usuario.apellido;
+    return usuario.nombre;
   }
   static getUsuario(): Usuario {
     const usuario = JSON.parse(sessionStorage.getItem('user')!);

@@ -1,0 +1,73 @@
+<div class="container">
+  <h2>Editar Producto</h2>
+  <div class="container">
+      <button
+      *ngIf="isAdmin()"
+      type="button"
+      class="btn btn-secondary mb-3"
+      [routerLink]="['/dashboard/admin']"
+    >
+      Regresar
+    </button>
+    <button
+      *ngIf="isVendor()"
+      type="button"
+      class="btn btn-secondary mb-3"
+      [routerLink]="['/dashboard']"
+    >
+      Regresar
+    </button>
+    <form (ngSubmit)="guardarCambios()">
+      <div class="form-group">
+        <label for="descripcion">Descripción:</label>
+        <input
+          type="text"
+          id="descripcion"
+          [(ngModel)]="product.descripcion"
+          name="descripcion"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="modelo">Modelo:</label>
+        <input
+          type="text"
+          id="modelo"
+          [(ngModel)]="product.modelo"
+          name="modelo"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="cantidad">Cantidad en Bodega:</label>
+        <input
+          type="number"
+          id="cantidad"
+          [(ngModel)]="product.cantidadEnBodega"
+          name="cantidad"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="valor">Valor de Venta:</label>
+        <input
+          type="number"
+          id="valor"
+          [(ngModel)]="product.valorVenta"
+          name="valor"
+          class="form-control"
+          required
+        />
+      </div>
+
+      <br />
+      <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+  </div>
+</div>

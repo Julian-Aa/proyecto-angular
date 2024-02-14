@@ -1,6 +1,16 @@
 <div class="container mt-5">
   <h2 class="text-center">Crear Usuario</h2>
-  <br />
+
+  <!-- Botón de regresar -->
+  <button
+    *ngIf="esAdmin()"
+    type="button"
+    class="btn btn-secondary mb-3"
+    [routerLink]="['/dashboard/admin']"
+  >
+    Regresar
+  </button>
+
   <div class="row justify-content-center">
     <div class="col-md-6">
       <form (ngSubmit)="onRegister()">
@@ -12,19 +22,7 @@
             name="nombre"
             class="form-control"
             id="nombre"
-            placeholder="nombre"
-            required
-          />
-        </div>
-        <div class="mb-3">
-          <label for="apellido" class="form-label">Apellido:</label>
-          <input
-            type="text"
-            [(ngModel)]="usuario.apellido"
-            name="apellido"
-            class="form-control"
-            id="apellido"
-            placeholder="apellido"
+            placeholder="Nombre"
             required
           />
         </div>
@@ -36,7 +34,7 @@
             name="email"
             class="form-control"
             id="email"
-            placeholder="email"
+            placeholder="Correo"
             required
           />
         </div>
@@ -48,9 +46,22 @@
             name="contrasena"
             class="form-control"
             id="contrasena"
-            placeholder="*******"
+            placeholder="Contraseña"
             required
           />
+        </div>
+        <div class="mb-3" *ngIf="esAdmin()">
+          <label for="rol" class="form-label">Rol:</label>
+          <select
+            id="rol"
+            [(ngModel)]="usuario.rol"
+            name="rol"
+            class="form-control"
+            required
+          >
+            <option value="vendedor">Vendedor</option>
+            <option value="admin">Administrador</option>
+          </select>
         </div>
         <div class="mb-3 text-center">
           <button type="submit" class="btn btn-primary">Registrarse</button>
